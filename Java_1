@@ -1,0 +1,61 @@
+import java.util.*;
+/**
+ * 手机尾号打分
+ * @author  
+ *
+ */
+public class Marking {
+
+	public static void main(String[] args) {
+		Scanner scn=new Scanner(System.in);
+		System.out.println("请输入手机尾号：");
+	    String tel=scn.next();//输入尾号
+	    int a = Integer.parseInt(tel.charAt(0)+""); 
+	    int b = Integer.parseInt(tel.charAt(1)+""); 
+	    int c = Integer.parseInt(tel.charAt(2)+""); 
+	    int d = Integer.parseInt(tel.charAt(3)+""); 
+	    int sum=0;
+	    sum=Score(a,b,c,d);
+	    System.out.println(sum);
+	    scn.close();
+	}
+	public static int Score(int a,int b,int c,int d)
+	{
+		int score=0;
+		/*如果出现连号，不管升序还是降序，都加5分 
+		 */
+		if((a == b+1 && b == c+1 && c == d+1) || (a == b-1 && b == c-1 && c == d-1))  
+            score += 5;  
+		/*前三个数字相同，或后三个数字相同，都加3分
+		 */
+		 if(a == b && b == c)  
+	            score += 3;  
+	        if(b == c && c == d)  
+	            score += 3;   
+	    /*符合AABB或者ABAB模式的加1分。
+	     */
+	    if(a == b && c == d)   
+	        score += 1;   
+	    if(a == c && b == d)   
+	        score += 1;  
+	    /*含有：6，8，9中任何一个数字，每出现一次加1分。
+	     */
+	    if(a == 6) score += 1;   
+        else if(a == 8) score += 1;  
+        else if(a == 9) score += 1;  
+  
+        if(b == 6) score += 1;  
+        else if(b == 8) score += 1;  
+        else if(b == 9) score += 1;  
+                
+        if(c == 6) score += 1;  
+        else if(c == 8) score += 1;  
+        else if(c == 9) score += 1;  
+                 
+        if(d == 6) score += 1;  
+        else if(d == 8) score += 1;  
+        else if(d == 9) score += 1;  
+                    
+        return score;
+	}
+}

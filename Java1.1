@@ -1,0 +1,58 @@
+import java.util.*;
+/**
+ * 猜字游戏，系统随机生成1-100范围的整数，输入数据进行猜测，猜大（小）了，给出提示，直到猜中为止。
+ * @author 陈首帅   1148321593@qq.com  
+ */
+public class Guess_the_word {
+	public static void main(String[] args) {
+		boolean leap=true;//控制循环
+		boolean flag;//控制循环
+		int ran;//用来存储随机数
+		int user;//接收用户猜测结果
+		String choose;//选择是否继续游戏
+		Random ram=new Random();//构造Random对象
+		ran=ram.nextInt(100);
+		System.out.println("系统已经随机生成一个1-100范围的整数，请玩家输入猜测结果：");
+		Scanner scn=new Scanner(System.in);
+		while(leap==true)
+		{
+			flag=true;
+			user=scn.nextInt();
+			if(user>ran)
+			{
+				System.out.println("提示：猜测结果偏大!");
+			}
+			else if(user<ran)
+			{
+				System.out.println("提示：猜测结果偏小!");
+			}
+			else
+			{
+				System.out.println("提示：恭喜玩家，猜对了!");
+				while(flag==true)
+				{
+					System.out.println("玩家真是太厉害了，是否要继续？（是Y，否N)");
+					choose=scn.next();
+					if(choose.equals("N")||choose.equals("n"))
+					{
+						leap=false;
+						System.out.println("退出游戏!");
+						flag=false;
+						scn.close();
+						System.exit(1);
+					}
+					else if(choose.equals("Y")||choose.equals("y"))
+					{	
+						ran=ram.nextInt(100);
+						System.out.println("系统已经随机生成一个1-100范围的整数，请玩家输入猜测结果：");
+						flag=false;
+					}
+					else
+					{
+						System.out.println("输入错误!!，请重新选择");
+					}
+				}
+			}
+		}	
+	}
+}
